@@ -21,7 +21,6 @@ Route::group([
         ], function () {
             Route::post('/register', [RegisterController::class, '__invoke']);
             Route::post('/login',[LoginController::class,'__invoke']);
-            Route::delete('/logout',[LogoutController::class , '__invoke']);
             Route::post('/verify',[VerifyController::class,'__invoke']);
             Route::post('/forget_password',[ForgetPasswordController::class,'__invoke']);
             Route::post('/reset_password',[ResetPasswordController::class,'__invoke']);
@@ -32,11 +31,13 @@ Route::group([
         ]
     ], function () {
 
+        Route::delete('/logout',[LogoutController::class , '__invoke']);
+
         /**
          * user account
          */
         Route::group([
-            'as' => 'account.',
+            'as' => 'notes.',
         ], function () {
             Route::apiResource('notes', NoteController::class);
         });

@@ -26,10 +26,8 @@ class VerifyController extends Controller
                 'email_verified_at'=>now(),
                 'reset_password'=>$request->reset_password
             ]);
-            $token = $user->createToken($user->id)->plainTextToken;
             return response()->json([
-                'token'=>$token,
-                'message' => __("Loged in Successfully"),
+                'message' => __("email verified successfully"),
                 'status' => Response::HTTP_OK
             ], Response::HTTP_OK);
         }

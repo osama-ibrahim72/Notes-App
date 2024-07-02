@@ -12,7 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('notes', function (Blueprint $table) {
-            $table->id();
+            $table->ulid('id')->primary();
+            $table->string('title')->nullable();
+            $table->text('body');
+            $table->foreignIdFor(\App\Models\User::class);
             $table->timestamps();
         });
     }

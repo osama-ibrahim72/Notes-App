@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\Auth\ForgetPasswordController;
 use App\Http\Controllers\Api\Auth\LoginController;
 use App\Http\Controllers\Api\Auth\LogoutController;
 use App\Http\Controllers\Api\Auth\RegisterController;
+use App\Http\Controllers\Api\Auth\ResetPasswordController;
 use App\Http\Controllers\Api\Auth\VerifyController;
 use App\Http\Controllers\Api\Notes\NoteController;
 use Illuminate\Auth\Middleware\Authenticate;
@@ -23,7 +24,7 @@ Route::group([
             Route::delete('/logout',[LogoutController::class , '__invoke']);
             Route::post('/verify',[VerifyController::class,'__invoke']);
             Route::post('/forget_password',[ForgetPasswordController::class,'__invoke']);
-//            Route::post('/reset_password',[ResetPasswordController::class])
+            Route::post('/reset_password',[ResetPasswordController::class,'__invoke']);
         });
     Route::group([
         'middleware' => [

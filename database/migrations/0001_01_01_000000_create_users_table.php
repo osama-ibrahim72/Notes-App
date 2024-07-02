@@ -21,6 +21,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('otp', 8)->nullable();
             $table->string('password')->nullable();
+            $table->boolean('reset_password')->default(false);
             $table->boolean('blocked')->default(false);
             $table->timestamp('block_after')->nullable();
             $table->timestamp('blocked_at')->nullable();

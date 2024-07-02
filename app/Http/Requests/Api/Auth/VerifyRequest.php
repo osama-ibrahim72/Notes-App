@@ -11,7 +11,7 @@ class VerifyRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,9 @@ class VerifyRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'email'=>'email|exists:users,email|required',
+            'otp'=>'required',
+            'reset_password'=>'nullable|boolean'
         ];
     }
 }

@@ -25,6 +25,22 @@ class RegisterRequest extends FormRequest
             'username'=>'required|string|unique:users,username',
             'password'=>'required|regex:/^(?=.*[0-9])(?=.*[^a-zA-Z0-9]).{8,}$/|min:6',
             'email'=>'required|email|unique:users,email',
+            'otp'=>'required|int|min:1000|max:9999'
         ];
+    }
+
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'otp'=> $this->generateOtp()
+        ]);
+    }
+
+    /**
+     * @return int
+     */
+    private function generateOtp(): int
+    {
+        return random_int(1000,9999);
     }
 }

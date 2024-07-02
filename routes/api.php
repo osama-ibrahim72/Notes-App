@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\Auth\LoginController;
 use App\Http\Controllers\Api\Auth\RegisterController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -13,5 +14,6 @@ Route::group([
             'prefix' => 'auth',
         ], function () {
             Route::post('/register', [RegisterController::class, '__invoke']);
+            Route::post('/login',[LoginController::class,'__invoke']);
         });
 });

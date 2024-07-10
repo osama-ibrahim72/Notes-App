@@ -23,7 +23,7 @@ class RegisterRequest extends FormRequest
     {
         return [
             'username'=>'required|string|unique:users,username',
-            'password'=>'required|regex:/^(?=.*[0-9])(?=.*[^a-zA-Z0-9]).{8,}$/|min:6',
+            'password'=>'required|regex:/^(?=.*[0-9])(?=.*[^a-zA-Z0-9]).{8,}$/|min:8',
             'email'=>'required|email|unique:users,email',
             'otp'=>'required|int|min:1000|max:9999'
         ];
@@ -42,5 +42,12 @@ class RegisterRequest extends FormRequest
     private function generateOtp(): int
     {
         return random_int(1000,9999);
+    }
+
+    public function messages()
+    {
+        return [
+          'password.regex'=>__('your Password must has Special Character and Upper and lower character and numbers')
+        ];
     }
 }

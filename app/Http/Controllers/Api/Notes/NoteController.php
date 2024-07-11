@@ -65,10 +65,20 @@ class NoteController extends Controller
      * @return NoteResource|JsonResponse
      */
     public function update(
-        Note $note,
+        $note,
         UpdateNoteRequest $request
     ):NoteResource|JsonResponse
     {
+        $note = Note::where([
+            'id'=>$note,
+            'user_id'=>Auth::user()->id
+        ])->first();
+        if(! $note instanceof  Note){
+            return response()->json([
+                'message' => __("We couldn't update the Note"),
+                'status' => Response::HTTP_BAD_REQUEST
+            ], Response::HTTP_BAD_REQUEST);
+        }
         if( $note->update($request->validated())) {
             return NoteResource::make(
                 $note
